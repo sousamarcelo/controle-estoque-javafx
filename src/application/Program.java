@@ -4,9 +4,9 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import db.DB;
 
 public class Program {
 
@@ -21,7 +21,7 @@ public class Program {
 		
 		
 		/* criando um grid */
-		JPanel painel = new JPanel(new GridLayout(5, 1));
+		JPanel painel = new JPanel(new GridLayout(5, 2));
 		
 		
 		JButton registerProductButton = new JButton("Cadastrar Produto");		
@@ -38,6 +38,9 @@ public class Program {
 		painel.add(findProductButton);
 		painel.add(insertProductButton);
 		painel.add(deleteProductButton);
+		
+		DB.getConnection();
+		//DB.closeConnection();
 
 		
 		
