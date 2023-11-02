@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.GridLayout;
+import java.sql.Connection;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,8 +40,11 @@ public class Program {
 		painel.add(insertProductButton);
 		painel.add(deleteProductButton);
 		
-		DB.getConnection();
-		//DB.closeConnection();
+		Connection conn = DB.getConnection();
+		
+		
+		
+		DB.closeConnection();
 
 		
 		

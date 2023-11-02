@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 public class DB {
 
 	public static Connection conn = null;
@@ -23,6 +25,7 @@ public class DB {
 				conn = DriverManager.getConnection(url, user, password);
 				
 			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Erro: Não foi possível conectar ao banco de dados.");
 				throw new DbException("Error connection data base: " + e.getMessage());
 			}
 		}
