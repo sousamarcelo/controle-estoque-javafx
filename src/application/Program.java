@@ -29,19 +29,15 @@ public class Program {
 		frame.setSize(500, 250);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		
-		
+				
 		/* criando um grid */
 		JPanel painel = new JPanel(new GridLayout(5, 2));
-		
-		
+				
 		JButton registerProductButton = new JButton("Cadastrar Produto");		
 		JButton findProductButton = new JButton("Encontrar Produto");
 		JButton insertProductButton = new JButton("Inserir Produto");
 		JButton deleteProductButton = new JButton("Excluir Produto");	
-		
-		
-		
+				
 		registerProductButton.setAlignmentX(500);
 		findProductButton.setLocation(0,0);
 		
@@ -49,8 +45,7 @@ public class Program {
 		painel.add(findProductButton);
 		painel.add(insertProductButton);
 		painel.add(deleteProductButton);
-		
-		
+				
 		registerProductButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -100,8 +95,7 @@ public class Program {
 						String name = nameField.getText();
 						String description = descriptionField.getText();
 						String priceAux = priceField.getText().replace(",", ".");
-						
-						
+												
 						Integer quantity = Integer.parseInt(quantityField.getText());
 						
 						Double price = Double.parseDouble(priceAux);
@@ -136,10 +130,7 @@ public class Program {
 							
 						} catch (SQLException e1) {							
 							e1.printStackTrace();
-						}
-						
-						
-						
+						}									
 						
 					}
 				});
@@ -147,19 +138,10 @@ public class Program {
 				frameRegister.add(panelRegister);
 				frameRegister.setVisible(true);
 			}
-		});
-	
-		
-		
-		
-
-		
-		
-		
+		});		
 		
 		frame.add(painel);
-		frame.setVisible(true);
-		
+		frame.setVisible(true);		
 		
 	}
 
