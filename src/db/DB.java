@@ -26,7 +26,7 @@ public class DB {
 				
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Erro: Não foi possível conectar ao banco de dados.");
-				throw new DbException("Error connection data base: " + e.getMessage());
+				throw new DbException("Erro de conexão com banco: " + e.getMessage());
 			}
 		}
 		return conn;
@@ -38,7 +38,7 @@ public class DB {
 			props.load(fs);
 			return props;
 		} catch (IOException e) {
-			throw new DbException("Error: " + e.getMessage());
+			throw new DbException("Erro de leitura do arquivo de conexão: " + e.getMessage());
 		}
 	}
 	
@@ -49,7 +49,7 @@ public class DB {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				throw new DbException("fail close connection: " + e.getLocalizedMessage());
+				throw new DbException("Falha ao encerrar conexão com banco: " + e.getLocalizedMessage());
 			}
 		}
 	}
