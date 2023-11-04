@@ -16,12 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import db.DB;
+import modelo.dao.DaoFactory;
+import modelo.dao.ProductDaoJDBC;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
 		Locale.setDefault(Locale.US);
+		
+		 ProductDaoJDBC product = DaoFactory.createProductDao();
 		
 		/* Criando a janela */
 		JFrame frame = new JFrame("Cadastro de Produtos");		
@@ -95,43 +99,21 @@ public class Program {
 						String name = nameField.getText();
 						String description = descriptionField.getText();
 						String priceAux = priceField.getText().replace(",", ".");
-												
-						Integer quantity = Integer.parseInt(quantityField.getText());
-						
 						Double price = Double.parseDouble(priceAux);
-						
-						Connection conn = DB.getConnection();
-						
-						String sql = "INSERT INTO tb_product (name, description, price, quantity) "
-									+ "VALUES (?, ?, ?, ?)";
-						
-						try {
-							
-							PreparedStatement preparedStatement = conn.prepareStatement(sql);
-							
-							preparedStatement.setString(1, name);
-							preparedStatement.setString(2, description);
-							preparedStatement.setDouble(3, price);
-							preparedStatement.setInt(4, quantity);
-							
-							int affectedLines = preparedStatement.executeUpdate();
-							
-							if (affectedLines > 0) {
-								JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-								nameField.setText("");
-								descriptionField.setText("");
-								priceField.setText("");
-								quantityField.setText("");
-							} else {
-								JOptionPane.showMessageDialog(null, "Falha ao cadastrar o usuário.");
-							}
-							DB.closeStatment(preparedStatement);
-							DB.closeConnection();
-							
-						} catch (SQLException e1) {							
-							e1.printStackTrace();
-						}									
-						
+						Integer quantity = Integer.parseInt(quantityField.getText());						
+												
+						int affectedLines = product.insert(name, description, price, quantity);
+													
+						if (affectedLines > 0) {
+							JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+							nameField.setText("");
+							descriptionField.setText("");
+							priceField.setText("");
+							quantityField.setText("");
+						} else {
+							JOptionPane.showMessageDialog(null, "Falha ao cadastrar o usuário.");
+						}							
+
 					}
 				});
 				
