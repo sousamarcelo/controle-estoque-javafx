@@ -57,72 +57,11 @@ public class Program {
 
 		registerProductButton.addActionListener(new ActionListener() {
 
-			@Override
+			@Override			
 			public void actionPerformed(ActionEvent e) {
+				
+				product.insert();					
 
-				JFrame frameRegister = new JFrame("Cadastrar Produto");
-				frameRegister.setSize(500, 250);
-				frameRegister.setLocationRelativeTo(null);
-
-				// painel dentro da janela
-				JPanel panelRegister = new JPanel(new GridLayout(5, 2));
-
-				// definindo campos dentro do painel
-				JTextField nameField = new JTextField(20);
-				JTextField descriptionField = new JTextField(20);
-				JTextField priceField = new JTextField(20);
-				JTextField quantityField = new JTextField(20);
-
-				// nomeando os campos definidos acima
-				JLabel nameLabel = new JLabel("Name: ");
-				JLabel descriptionLabel = new JLabel("Descição: ");
-				JLabel priceLabel = new JLabel("Preço: ");
-				JLabel quantityLabel = new JLabel("Quantidade: ");
-
-				// adicionando os campos e os rotulos no painel
-				panelRegister.add(nameLabel);
-				panelRegister.add(nameField);
-				panelRegister.add(descriptionLabel);
-				panelRegister.add(descriptionField);
-				panelRegister.add(priceLabel);
-				panelRegister.add(priceField);
-				panelRegister.add(quantityLabel);
-				panelRegister.add(quantityField);
-
-				// Botão de cadastro
-				JButton registerButton = new JButton("Cadastrar");
-
-				// adicionando botão de cadastrar no painel de cadastros
-				panelRegister.add(registerButton);
-
-				// evento de clique do botão de cadastro
-				registerButton.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						String name = nameField.getText();
-						String description = descriptionField.getText();
-						String priceAux = priceField.getText().replace(",", ".");
-						Double price = Double.parseDouble(priceAux);
-						Integer quantity = Integer.parseInt(quantityField.getText());
-
-						// acessando banco para gravar a inclusão
-						int affectedLines = product.insert(name, description, price, quantity);
-
-						if (affectedLines > 0) {
-							JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
-							nameField.setText("");
-							descriptionField.setText("");
-							priceField.setText("");
-							quantityField.setText("");
-						} else {
-							JOptionPane.showMessageDialog(null, "Falha ao cadastrar o produto.");
-						}
-					}
-				});
-
-				frameRegister.add(panelRegister);
-				frameRegister.setVisible(true);
 			}
 		});
 
