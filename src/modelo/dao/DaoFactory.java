@@ -8,4 +8,6 @@ public class DaoFactory {
 		return new ProductDaoJDBC(DB.getConnection());
 	}
 	
+	
+	
 }

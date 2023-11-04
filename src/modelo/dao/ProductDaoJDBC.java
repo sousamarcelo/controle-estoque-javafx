@@ -34,5 +34,7 @@ public class ProductDaoJDBC {
 			throw new DbException("Falha de conexão com o banco: " + e.getMessage());
 		}
 	}
+	
+	
 
 }
