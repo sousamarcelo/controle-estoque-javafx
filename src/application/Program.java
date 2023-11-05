@@ -3,22 +3,12 @@ package application;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Locale;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
-import db.DB;
-import db.DbException;
 import modelo.dao.DaoFactory;
 import modelo.dao.ProductDaoJDBC;
 
@@ -72,6 +62,20 @@ public class Program {
 				product.searchProduct();
 			}
 		});
+		
+		
+		listProductsButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				product.listProduct();
+				
+				
+			}
+		});
+		
+		
 
 		frame.add(painel);
 		frame.setVisible(true);

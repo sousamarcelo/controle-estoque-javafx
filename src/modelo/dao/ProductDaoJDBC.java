@@ -196,6 +196,7 @@ public class ProductDaoJDBC {
 					
 					while (rst.next()) {
 						String result = "Nome: " + rst.getString("name") + ", Description: " + rst.getString("description") + ", Preço: " + rst.getDouble("price") + "\n";
+						
 						resultArea.append(result);
 					}
 					
@@ -217,4 +218,62 @@ public class ProductDaoJDBC {
 		
 	}
 
-} // OK
+
+	public void listProduct() {
+		
+		// Criando a janela de lista de produtos
+		JFrame frameList = new JFrame("Lista de Produtos");
+		frameList.setSize(500, 250);
+		
+		// Centralizando janela
+		frameList.setLocationRelativeTo(null);
+		frameList.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// criando um painel com grid 
+		JPanel painelList = new JPanel(new GridLayout(1, 2));
+		
+		//Criando area para exibição da lista
+		JTextArea areaList = new JTextArea(5, 20);
+		areaList.setEditable(false);
+		
+		//adicionando area de consulta ao painel
+		painelList.add(areaList);
+		
+		// iniciando processo de consulta
+		
+		PreparedStatement pst = null;
+		ResultSet rst = null;
+		
+		String sql = "SELECT name, description, price FROM tb_product ORDER BY name";  // 		
+		
+		try {
+			
+			/* executando a consulta SQL para buscar pelo nome */
+			pst = conn.prepareStatement(sql);
+			//ps.setString(1, name);
+			
+			/* execultar a consultar e guarda-la em um resultset ele mantem uma extrutura de table */
+			rst = pst.executeQuery();
+			
+			// limpando area de resultado de consulta
+			areaList.setText("");
+			
+			while (rst.next()) {
+				String result = "Nome: " + rst.getString("name") + ", Description: " + rst.getString("description") + ", Preço: " + rst.getDouble("price") + "\n";
+				areaList.append(result);
+			}
+			
+		} catch (SQLException e2) {
+			JOptionPane.showMessageDialog(null, "Falha  ao execução da query SQL de pesquisa.");
+			throw new DbException("Falha  ao execução da query SQL de pesquisa: " + e2.getMessage());
+		} finally {
+			DB.closeStatment(pst);
+			DB.closeResultSet(rst);
+		}
+		
+		
+		frameList.add(painelList);
+		frameList.setVisible(true);
+		
+	}
+} 
