@@ -76,6 +76,26 @@ public class Program {
 		});
 		
 		
+		UpdateProductButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				product.updateProduct();
+				
+			}
+		});
+		
+		deleteProductButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				product.deleteProduct();
+				
+			}
+		});
+		
 
 		frame.add(painel);
 		frame.setVisible(true);
