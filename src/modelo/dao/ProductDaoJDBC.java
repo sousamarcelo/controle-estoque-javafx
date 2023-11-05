@@ -259,7 +259,7 @@ public class ProductDaoJDBC {
 			areaList.setText("");
 			
 			while (rst.next()) {
-				String result = "Nome: " + rst.getString("name") + ", Description: " + rst.getString("description") + ", Preço: " + rst.getDouble("price") + "\n";
+				String result = "Nome: " + rst.getString("name") + ", Descrição: " + rst.getString("description") + ", Preço: " + rst.getDouble("price") + "\n";
 				areaList.append(result);
 			}
 			
